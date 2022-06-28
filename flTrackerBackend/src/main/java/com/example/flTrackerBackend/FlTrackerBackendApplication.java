@@ -7,6 +7,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import com.example.flTrackerBackend.model.ActiveEncounter;
+import com.example.flTrackerBackend.model.Encounter;
 import com.example.flTrackerBackend.model.Monster;
 
 @SpringBootApplication
@@ -19,6 +20,7 @@ public class FlTrackerBackendApplication implements RepositoryRestConfigurer{
 	@Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
         config.exposeIdsFor(Monster.class);
+        config.exposeIdsFor(Encounter.class);
         config.exposeIdsFor(ActiveEncounter.class);
     }
 

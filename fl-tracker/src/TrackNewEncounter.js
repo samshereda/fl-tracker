@@ -4,11 +4,13 @@ import {
   getMonster,
   addActiveMonster,
   addActiveMonstersToActiveEncounter,
+  listEncounters,
 } from './api';
-import { listEncounters } from './api';
+import { useNavigate } from 'react-router-dom';
 
 function TrackNewEncounter() {
   const [encounters, setEncounters] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -49,10 +51,12 @@ function TrackNewEncounter() {
       type: encounter.name,
     });
 
-    addActiveMonstersToActiveEncounter(
+    await addActiveMonstersToActiveEncounter(
       activeEncounterFromAPI,
       encounterMonsters
     );
+
+    navigate(`/encounterTracker/${activeEncounterFromAPI.id}`);
   }
 
   return (

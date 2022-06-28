@@ -12,12 +12,6 @@ function Home() {
           but they can also be used for any Year Zero Engine games that track
           individual attribute scores, like <em>Mutant: Year Zero</em>
         </p>
-        {/* <p>
-          To start tracking an encounter, click <Link>here!</Link>
-        </p>
-        <p>
-          To save encounters and make custom enemies, click <Link>here!</Link>
-        </p> */}
       </div>
     </header>
   );

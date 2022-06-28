@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { addEncounter } from './api';
 import { listMonsters } from './api';
+import { useNavigate } from 'react-router-dom';
 
 function EncounterForm() {
+  const navigate = useNavigate();
   const [encounter, setEncounter] = useState({});
   const [encounterName, setEncounterName] = useState('');
   const [monsters, setMonsters] = useState([]);
@@ -22,6 +24,7 @@ function EncounterForm() {
     event.stopPropagation();
     const APIEncounter = { name: encounterName, monsterQuantities: encounter };
     await addEncounter(APIEncounter);
+    navigate('/newEncounter');
   }
 
   function increaseQuantity(id) {
@@ -68,7 +71,6 @@ function EncounterForm() {
     } else {
       setEncounter({ ...encounter, [selectedMonster]: 1 });
     }
-    console.log(encounter);
   }
 
   function displayEncounter() {
