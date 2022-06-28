@@ -11,6 +11,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+//Class for the Monster templates that ActiveMonsters are built off
+
+
 @XmlRootElement
 
 @Entity

@@ -5,6 +5,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+//Class for the Active Monsters that are tracked in ActiveEncounters
 
 @Entity
 @Table(name= "active_monsters")

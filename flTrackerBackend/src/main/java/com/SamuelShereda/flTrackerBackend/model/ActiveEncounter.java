@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;	
 
+//Class for active encounters that can be tracked, built from the Encounter entity
 @Entity
 @Table(name= "active_encounters")
 public class ActiveEncounter {

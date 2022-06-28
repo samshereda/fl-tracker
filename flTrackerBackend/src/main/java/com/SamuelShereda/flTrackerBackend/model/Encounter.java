@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+//Class for the Encounter templates that ActiveEncounters are built off
+
 @Entity
 @Table(name = "encounters")
 public class Encounter {
