@@ -6,5 +6,5 @@ Before you run the application, make sure the database setup in application.prop
 
 To start the backend, run FlTrackerBackendApplication.java in the src/main/java/com/example/flTrackerBackend package.
 
-To start the frontend, run `nom start` in the "fl-tracker" directory.
+To start the frontend, run `npm start` in the "fl-tracker" directory.
 

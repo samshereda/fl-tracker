@@ -1,10 +1,10 @@
-package com.example.flTrackerBackend.repository;
+package com.SamuelShereda.flTrackerBackend.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.example.flTrackerBackend.model.Encounter;
+import com.SamuelShereda.flTrackerBackend.model.Encounter;
 @Repository
 @CrossOrigin("http://localhost:3000/")
 

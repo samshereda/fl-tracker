@@ -1,4 +1,4 @@
-package com.example.flTrackerBackend.model;
+package com.SamuelShereda.flTrackerBackend.model;
 
 import java.util.Map;
 
