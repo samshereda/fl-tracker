@@ -29,6 +29,22 @@ function MonsterForm() {
     event.preventDefault();
     event.stopPropagation();
 
+    if (!monster.empathy) {
+      monster.empathy = null;
+    }
+
+    if (!monster.wits) {
+      monster.wits = null;
+    }
+
+    if (!monster.armor_bonus) {
+      monster.armor_bonus = null;
+    }
+
+    if (!monster.weapon_bonus) {
+      monster.weapon_bonus = null;
+    }
+
     await addMonster(monster);
     navigate('/all-monsters');
   }

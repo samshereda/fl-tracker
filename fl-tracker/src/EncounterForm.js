@@ -3,30 +3,39 @@ import { addEncounter } from './api';
 import { listMonsters } from './api';
 
 function EncounterForm() {
-  const [encounter, setEncounter] = useState([]);
+  const [encounter, setEncounter] = useState({});
+  const [encounterName, setEncounterName] = useState('');
+  const [monsters, setMonsters] = useState([]);
+  const [selectedMonster, setSelectedMonster] = useState(0);
 
-  function changeHandler({ target: { name, value } }) {
-    console.log(name, value);
-    setSelectedMonster({
-      name: value,
-    });
-    console.log(selectedMonster);
+  function monsterChangeHandler({ target: { value } }) {
+    console.log(value);
+    setSelectedMonster(value);
   }
 
-  async function submitHandler(event) {
+  function nameChangeHandler({ target: { value } }) {
+    setEncounterName(value);
+  }
+
+  async function saveEncounter(event) {
     event.preventDefault();
     event.stopPropagation();
-
-    await addEncounter(encounter);
+    const APIEncounter = { name: encounterName, monsterQuantities: encounter };
+    await addEncounter(APIEncounter);
   }
 
-  const [monsters, setMonsters] = useState([]);
-
   function increaseQuantity(id) {
-    const editedEncounter = encounter.slice();
-    editedEncounter.find((monster) => {
-      return monster.id == id;
-    }).quantity += 1;
+    const editedEncounter = { ...encounter };
+    editedEncounter[id] += 1;
+    setEncounter(editedEncounter);
+  }
+
+  function decreaseQuantity(id) {
+    const editedEncounter = { ...encounter };
+    editedEncounter[id] -= 1;
+    if (editedEncounter[id] === 0) {
+      delete editedEncounter[id];
+    }
     setEncounter(editedEncounter);
   }
 
@@ -54,30 +63,71 @@ function EncounterForm() {
   function addEncounterMonster(event) {
     event.preventDefault();
     event.stopPropagation();
-    if (
-      encounter.some((monster) => {
-        return monster.id == selectedMonster.name;
-      })
-    ) {
-      increaseQuantity(selectedMonster.name);
+    if (selectedMonster in encounter) {
+      increaseQuantity(selectedMonster);
     } else {
-      setEncounter([...encounter, { id: selectedMonster.name, quantity: 1 }]);
+      setEncounter({ ...encounter, [selectedMonster]: 1 });
     }
+    console.log(encounter);
   }
 
-  const [selectedMonster, setSelectedMonster] = useState({
-    monster_select: '',
-  });
+  function displayEncounter() {
+    const finalDisplay = [];
+    for (let id in encounter) {
+      finalDisplay.push(
+        <div>
+          <p>
+            {
+              monsters.find((m) => {
+                console.log(m);
+                console.log(id);
+                return m.id == id;
+              }).name
+            }
+          </p>
+          <button
+            onClick={() => {
+              decreaseQuantity(id);
+            }}
+          >
+            -
+          </button>
+          <span>{encounter[id]}</span>
+          <button
+            onClick={() => {
+              increaseQuantity(id);
+            }}
+          >
+            +
+          </button>
+        </div>
+      );
+    }
+    return finalDisplay;
+  }
 
   return (
     <div>
+      <form onSubmit={saveEncounter}>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={encounter.name}
+          onChange={nameChangeHandler}
+          required
+        />
+        <h4>
+          <input type="submit" value="Save Encounter" />
+        </h4>
+      </form>
       <form onSubmit={addEncounterMonster} id="add-monster">
-        <select name="monster_select" onChange={changeHandler} required>
+        <select name="monster_select" onChange={monsterChangeHandler} required>
           <option value=""> Please choose an option </option>
           {monsters ? (
             monsters.map((monster, index) => {
               return (
-                <option key={index} value={index}>
+                <option key={index} value={monster.id}>
                   {monster.name}
                 </option>
               );
@@ -88,16 +138,7 @@ function EncounterForm() {
         </select>
         <input type="submit" />
       </form>
-      {encounter.map((monster) => {
-        return (
-          <div key={monster.id}>
-            <p>{monsters[monster.id].name}</p>
-            <button>-</button>
-            <span>{monster.quantity}</span>
-            <button> +</button>
-          </div>
-        );
-      })}
+      <div>{displayEncounter()}</div>
     </div>
   );
 }

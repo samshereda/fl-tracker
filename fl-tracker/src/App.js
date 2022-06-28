@@ -7,6 +7,9 @@ import Navbar from './Navbar';
 import MonsterList from './MonsterList';
 import MonsterForm from './MonsterForm';
 import EncounterForm from './EncounterForm';
+import TrackNewEncounter from './TrackNewEncounter';
+import SelectEncounter from './SelectEncounter';
+import EncounterTracker from './EncounterTracker';
 
 function App() {
   return (
@@ -15,9 +18,15 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/all-monsters" element={<MonsterList />} />
-        <Route path="/monster-form" element={<MonsterForm />} />
-        <Route path="/encounter-form" element={<EncounterForm />} />
+        <Route path="/allMonsters" element={<MonsterList />} />
+        <Route path="/monsterForm" element={<MonsterForm />} />
+        <Route path="/encounterForm" element={<EncounterForm />} />
+        <Route path="/newEncounter" element={<TrackNewEncounter />} />
+        <Route path="/selectEncounter" element={<SelectEncounter />} />
+        <Route
+          path="/encounterTracker/:activeEncounterId"
+          element={<EncounterTracker />}
+        />
       </Routes>
     </div>
   );
