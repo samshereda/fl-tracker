@@ -24,3 +24,35 @@ nav {
   justify-content: center;
 
 }
+
+p {
+  max-width: 800px;
+  margin: auto;
+}
+
+.monster-card {
+  border: 2px solid black;
+  border-radius: 5px;
+  max-width: 200px;
+  width: 200px;
+  margin: 20px;
+  padding: 20px;
+  color: black;
+  text-decoration: none;
+}
+
+.monster-card > h4{
+  margin-top: 0;
+}
+
+.bestiary, .active-encounter-list {
+  display: flex;
+  max-width: 800px;
+  margin: auto;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.close-button {
+  float: right;
+}

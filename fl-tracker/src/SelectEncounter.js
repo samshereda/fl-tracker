@@ -37,13 +37,17 @@ function SelectEncounter() {
   }, []);
 
   return (
-    <div>
+    <div className="active-encounter-list">
       {encounters ? (
         encounters.map((encounter, index) => {
           return (
-            <Link key={index} to={`/encounterTracker/${encounter.id}`}>
-              <p>{`Encounter ${encounter.id}`}</p>
-              <p>{`Type: ${encounter.type}`}</p>
+            <Link
+              key={index}
+              to={`/encounterTracker/${encounter.id}`}
+              className="monster-card"
+            >
+              {`Encounter ${encounter.id}`}
+              <br /> {`Type: ${encounter.type}`}
             </Link>
           );
         })

@@ -26,10 +26,10 @@ function MonsterList() {
 
   if (monsters) {
     return (
-      <div>
+      <div className="bestiary">
         {monsters.map((monster, index) => {
           return (
-            <div key={index}>
+            <div key={index} className="monster-card">
               <h4>{monster.name}</h4>
               <p>Strength: {monster.strength}</p>
               <p>Agility: {monster.agility}</p>

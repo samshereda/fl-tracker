@@ -60,14 +60,16 @@ function EncounterTracker() {
   }
 
   return (
-    <div>
+    <div className="bestiary">
       {monsters ? (
         monsters.map((monster, index) => {
           return (
-            <div key={index}>
-              <button onClick={() => deleteMonsterFromEncounter(monster)}>
-                {' '}
-                x{' '}
+            <div key={index} className="monster-card">
+              <button
+                onClick={() => deleteMonsterFromEncounter(monster)}
+                className="close-button"
+              >
+                X
               </button>
               <h4>{monster.name}</h4>
               <p>

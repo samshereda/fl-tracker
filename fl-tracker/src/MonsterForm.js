@@ -46,7 +46,7 @@ function MonsterForm() {
     }
 
     await addMonster(monster);
-    navigate('/all-monsters');
+    navigate('/allMonsters');
   }
 
   return (
