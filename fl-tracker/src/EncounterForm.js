@@ -75,7 +75,7 @@ function EncounterForm() {
     const finalDisplay = [];
     for (let id in encounter) {
       finalDisplay.push(
-        <div>
+        <div className="monster-card">
           <p>
             {
               monsters.find((m) => {
@@ -107,6 +107,8 @@ function EncounterForm() {
   return (
     <div>
       <form onSubmit={saveEncounter}>
+        <label htmlFor="name">Encounter Name:</label>
+        <br />
         <input
           type="text"
           id="name"
@@ -136,7 +138,7 @@ function EncounterForm() {
         </select>
         <input type="submit" />
       </form>
-      <div>{displayEncounter()}</div>
+      <div className="bestiary">{displayEncounter()}</div>
     </div>
   );
 }
