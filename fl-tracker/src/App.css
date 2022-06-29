@@ -47,7 +47,7 @@ p {
 
 .bestiary, .active-encounter-list {
   display: flex;
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
   flex-flow: row wrap;
   justify-content: center;
