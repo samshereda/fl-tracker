@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { editActiveMonster, listActiveEncounterActiveMonsters } from './api';
+import {
+  editActiveMonster,
+  listActiveEncounterActiveMonsters,
+  deleteActiveMonster,
+} from './api';
 import { useParams } from 'react-router-dom';
 
 function EncounterTracker() {
@@ -16,7 +20,6 @@ function EncounterTracker() {
           abortController.signal
         );
 
-        console.log(monstersFromAPI);
         setMonsters(monstersFromAPI);
       } catch (error) {
         if (error.name === 'AbortError') {
@@ -32,7 +35,6 @@ function EncounterTracker() {
   }, []);
 
   function decreaseAttribute(attribute, monsterIndex) {
-    console.log(monsterIndex, attribute);
     const updatedMonsterList = [...monsters];
     const updatedMonster = updatedMonsterList[monsterIndex];
     if (updatedMonster[attribute] > 0) {
@@ -49,12 +51,24 @@ function EncounterTracker() {
     setMonsters(updatedMonsterList);
   }
 
+  async function deleteMonsterFromEncounter(monster) {
+    await deleteActiveMonster(monster);
+    const monstersFromAPI = await listActiveEncounterActiveMonsters(
+      activeEncounterId
+    );
+    setMonsters(monstersFromAPI);
+  }
+
   return (
     <div>
       {monsters ? (
         monsters.map((monster, index) => {
           return (
             <div key={index}>
+              <button onClick={() => deleteMonsterFromEncounter(monster)}>
+                {' '}
+                x{' '}
+              </button>
               <h4>{monster.name}</h4>
               <p>
                 <button

@@ -139,3 +139,11 @@ export async function editActiveMonster(activeMonster) {
   };
   return await fetchJson(url, options, {});
 }
+
+export async function deleteActiveMonster(activeMonster) {
+  const url = new URL(activeMonster._links.self.href);
+  const options = {
+    method: 'DELETE',
+  };
+  return await fetchJson(url, options, {});
+}

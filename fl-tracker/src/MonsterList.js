@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { listMonsters } from './api';
 
 function MonsterList() {
-
   const [monsters, setMonsters] = useState([]);
 
   useEffect(() => {
@@ -12,7 +11,6 @@ function MonsterList() {
       try {
         const monstersFromAPI = await listMonsters(abortController.signal);
         setMonsters(monstersFromAPI);
-        console.log(monstersFromAPI);
       } catch (error) {
         if (error.name === 'AbortError') {
           console.log('Aborted');

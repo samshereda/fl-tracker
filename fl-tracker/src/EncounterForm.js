@@ -11,7 +11,6 @@ function EncounterForm() {
   const [selectedMonster, setSelectedMonster] = useState(0);
 
   function monsterChangeHandler({ target: { value } }) {
-    console.log(value);
     setSelectedMonster(value);
   }
 
@@ -49,7 +48,6 @@ function EncounterForm() {
       try {
         const monstersFromAPI = await listMonsters(abortController.signal);
         setMonsters(monstersFromAPI);
-        console.log(monstersFromAPI);
       } catch (error) {
         if (error.name === 'AbortError') {
           console.log('Aborted');
@@ -81,8 +79,6 @@ function EncounterForm() {
           <p>
             {
               monsters.find((m) => {
-                console.log(m);
-                console.log(id);
                 return m.id == id;
               }).name
             }
